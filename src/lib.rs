@@ -1,3 +1,5 @@
+use std::path::Iter;
+
 #[derive(Debug)]
 struct Thing {
     field: f64,
@@ -15,8 +17,18 @@ struct SeveralThings {
 }
 
 impl SeveralThings {
-    fn pairs(&self) -> SeveralThingsIterator {
-        SeveralThingsIterator::new(self)
+    // fn pairs(&self) -> SeveralThingsIterator {
+    //     SeveralThingsIterator::new(self)
+    // }
+
+    fn pairs(&self) -> impl Iterator<Item = TwoThings> {
+        self.things
+            .iter()
+            .zip(self.things.iter().cycle().skip(1))
+            .map(|pair| TwoThings {
+                a: pair.0,
+                b: pair.1,
+            })
     }
 }
 
