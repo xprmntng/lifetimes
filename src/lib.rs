@@ -21,6 +21,9 @@ impl SeveralThings {
     //     SeveralThingsIterator::new(self)
     // }
 
+    // Via prompt: in Rust, what's the most idiomatic way of iterating over pairs of items, `a, b`, in a collection
+    // (such as a Vec), with the last "window" pair wrapping back around to the first item such that `a` is the last
+    // item in the list and `b` is the first item in the list
     fn pairs(&self) -> impl Iterator<Item = TwoThings> {
         self.things
             .iter()
